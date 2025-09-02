@@ -1,13 +1,61 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadro Romântico - Lívia & Luís</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="frame">
+            <h1 class="title">Lívia <span class="heart">♥</span> Luís</h1>
+            
+            <div class="photo-grid">
+                <div class="photo-slot" data-photo="1">
+                    <input type="file" id="photo1" accept="image/*" class="photo-input">
+                    <label for="photo1" class="photo-label">
+                        <div class="upload-icon">📷</div>
+                        <span>Clique para adicionar foto</span>
+                    </label>
+                    <img class="photo-preview" alt="Foto 1">
+                </div>
+                
+                <div class="photo-slot" data-photo="2">
+                    <input type="file" id="photo2" accept="image/*" class="photo-input">
+                    <label for="photo2" class="photo-label">
+                        <div class="upload-icon">📷</div>
+                        <span>Clique para adicionar foto</span>
+                    </label>
+                    <img class="photo-preview" alt="Foto 2">
+                </div>
+                
+                <div class="photo-slot" data-photo="3">
+                    <input type="file" id="photo3" accept="image/*" class="photo-input">
+                    <label for="photo3" class="photo-label">
+                        <div class="upload-icon">📷</div>
+                        <span>Clique para adicionar foto</span>
+                    </label>
+                    <img class="photo-preview" alt="Foto 3">
+                </div>
+                
+                <div class="photo-slot" data-photo="4">
+                    <input type="file" id="photo4" accept="image/*" class="photo-input">
+                    <label for="photo4" class="photo-label">
+                        <div class="upload-icon">📷</div>
+                        <span>Clique para adicionar foto</span>
+                    </label>
+                    <img class="photo-preview" alt="Foto 4">
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button id="clearAll" class="btn-clear">Limpar Todas</button>
+                <button id="saveFrame" class="btn-save">Salvar Quadro</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
 </html>

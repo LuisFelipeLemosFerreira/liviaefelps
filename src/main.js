@@ -1,24 +1,69 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+document.addEventListener("DOMContentLoaded", () => {
+  const photoInputs = document.querySelectorAll(".photo-input")
+  const clearAllBtn = document.getElementById("clearAll")
+  const saveFrameBtn = document.getElementById("saveFrame")
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+  // Função para lidar com upload de fotos
+  photoInputs.forEach((input) => {
+    input.addEventListener("change", (e) => {
+      const file = e.target.files[0]
+      if (file) {
+        const reader = new FileReader()
+        reader.onload = (e) => {
+          const photoSlot = input.closest(".photo-slot")
+          const preview = photoSlot.querySelector(".photo-preview")
 
-setupCounter(document.querySelector('#counter'))
+          preview.src = e.target.result
+          photoSlot.classList.add("has-photo")
+        }
+        reader.readAsDataURL(file)
+      }
+    })
+  })
+
+  // Função para limpar todas as fotos
+  clearAllBtn.addEventListener("click", () => {
+    if (confirm("Tem certeza que deseja remover todas as fotos?")) {
+      photoInputs.forEach((input) => {
+        input.value = ""
+        const photoSlot = input.closest(".photo-slot")
+        const preview = photoSlot.querySelector(".photo-preview")
+
+        preview.src = ""
+        photoSlot.classList.remove("has-photo")
+      })
+    }
+  })
+
+  // Função para salvar o quadro (simula download)
+  saveFrameBtn.addEventListener("click", () => {
+    const frame = document.querySelector(".frame")
+
+    // Esconde os controles temporariamente
+    const controls = document.querySelector(".controls")
+    controls.style.display = "none"
+
+    // Simula captura do quadro
+    setTimeout(() => {
+      alert("Quadro salvo! (Em uma implementação real, aqui seria gerada uma imagem)")
+      controls.style.display = "flex"
+    }, 500)
+  })
+
+  // Adiciona efeito de hover nas fotos
+  document.querySelectorAll(".photo-slot").forEach((slot) => {
+    slot.addEventListener("mouseenter", function () {
+      if (this.classList.contains("has-photo")) {
+        const preview = this.querySelector(".photo-preview")
+        preview.style.transform = "scale(1.05)"
+      }
+    })
+
+    slot.addEventListener("mouseleave", function () {
+      if (this.classList.contains("has-photo")) {
+        const preview = this.querySelector(".photo-preview")
+        preview.style.transform = "scale(1)"
+      }
+    })
+  })
+})
